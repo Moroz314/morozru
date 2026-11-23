@@ -1,0 +1,16 @@
+[Unit]
+Description=Moroz314 Telegram Lead API
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/var/www/moroz314
+ExecStart=/usr/bin/node /var/www/moroz314/server.js
+Restart=always
+RestartSec=3
+Environment=NODE_ENV=production
+Environment=PORT=3001
+Environment=HOST=127.0.0.1
+
+[Install]
+WantedBy=multi-user.target
