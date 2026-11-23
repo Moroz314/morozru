@@ -1,3 +1,11 @@
+import dns from 'node:dns';
+
+try {
+  dns.setDefaultResultOrder('ipv4first');
+} catch {
+  // Ignore on runtimes without dns.setDefaultResultOrder
+}
+
 function escapeHtml(str = '') {
   return String(str)
     .replace(/&/g, '&amp;')
@@ -50,7 +58,8 @@ export default async function handler(req, res) {
       cleanPage ? `🌐 <b>Источник:</b> ${escapeHtml(cleanPage)}` : null,
     ].filter((line) => line !== null);
 
-    const tgResponse = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    const apiBase = (process.env.TELEGRAM_API_BASE || 'https://api.telegram.org').replace(/\/+$/, '');
+    const tgResponse = await fetch(`${apiBase}/bot${botToken}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -71,6 +80,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ ok: true });
   } catch (err) {
-    return res.status(500).json({ ok: false, error: err?.message || 'Server error' });
+    const detail = err?.cause?.code || err?.cause?.message || err?.message || 'Server error';
+    return res.status(500).json({ ok: false, error: `Telegram request failed: ${detail}` });
   }
 }
