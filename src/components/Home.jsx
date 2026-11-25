@@ -348,6 +348,17 @@ function DemoConcepts() {
       path: '/demo/coffee',
       accentColor: '#f59e0b',
     },
+    {
+      id: 'ceramics',
+      emoji: '🏺',
+      title: 'РУСЫКОСЫ',
+      subtitle: 'Авторская керамика',
+      description:
+        'Бутиковый интернет-магазин посуды ручной работы в стиле Kinfolk: каталог с фильтрами, быстрый просмотр, корзина с доставкой СДЭК и HoReCa-форма.',
+      tags: ['Интернет-магазин', 'Корзина + СДЭК', 'Editorial UI'],
+      path: '/demo/ceramics',
+      accentColor: '#e07a5f',
+    },
   ];
 
   return (
@@ -362,7 +373,7 @@ function DemoConcepts() {
           />
         </Reveal>
 
-        <div className="demo-concepts-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
+        <div className="demo-concepts-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
           {demos.map((demo, idx) => (
             <Reveal key={demo.id} delay={idx * 90}>
               <SpotlightCard
@@ -491,7 +502,7 @@ function DemoConcepts() {
       </div>
 
       <style>{`
-        @media (max-width: 960px) {
+        @media (max-width: 768px) {
           .demo-concepts-grid { grid-template-columns: 1fr !important; }
         }
         @media (min-width: 620px) and (max-width: 960px) {
