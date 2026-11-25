@@ -4,6 +4,7 @@ import Home from './components/Home';
 import DemoDetailing from './pages/demos/DemoDetailing';
 import DemoFurniture from './pages/demos/DemoFurniture';
 import DemoCoffee from './pages/demos/DemoCoffee';
+import DemoCeramics from './pages/demos/DemoCeramics';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -26,6 +27,7 @@ function App() {
         <Route path="/demo/detailing" element={<DemoDetailing />} />
         <Route path="/demo/furniture" element={<DemoFurniture />} />
         <Route path="/demo/coffee" element={<DemoCoffee />} />
+        <Route path="/demo/ceramics" element={<DemoCeramics />} />
       </Routes>
     </>
   );
